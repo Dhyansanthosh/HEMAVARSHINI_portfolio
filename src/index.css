@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  scroll-behavior: smooth;
+  background-color: #050916;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-midnight text-slate-100 antialiased;
+  min-height: 100%;
+  background-image: radial-gradient(circle at top, rgba(81, 176, 255, 0.12), transparent 28%), radial-gradient(circle at 80% 20%, rgba(129, 73, 255, 0.08), transparent 28%), linear-gradient(180deg, #050916 0%, #081233 70%, #06080f 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(94, 189, 255, 0.35);
+  color: white;
+}
+
+.blur-glass {
+  background: rgba(15, 23, 64, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.glow-ring {
+  box-shadow: 0 0 80px rgba(92, 225, 255, 0.15), inset 0 0 24px rgba(126, 81, 255, 0.22);
+}
+
+.section-title {
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: rgba(226, 232, 255, 0.6);
+}
+
+[data-cursor] {
+  cursor: none;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+
+.cursor-ring {
+  width: 70px;
+  height: 70px;
+  border: 1px solid rgba(94, 189, 255, 0.22);
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  transition: transform 0.18s ease, opacity 0.22s ease;
+  opacity: 0.7;
+}
+
+.cursor-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  background: rgba(94, 189, 255, 0.95);
+  transform: translate(-50%, -50%);
+}
+
+.cursor-hover .cursor-ring {
+  transform: translate(-50%, -50%) scale(1.6);
+  opacity: 0.96;
+}
+
+.cursor-hover .cursor-dot {
+  transform: translate(-50%, -50%) scale(0.7);
+}
+
+@media (max-width: 768px) {
+  body {
+    background-image: radial-gradient(circle at top, rgba(81, 176, 255, 0.14), transparent 35%), radial-gradient(circle at 80% 20%, rgba(129, 73, 255, 0.10), transparent 33%), linear-gradient(180deg, #050916 0%, #071020 75%, #06080f 100%);
+  }
+}
