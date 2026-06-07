@@ -48,7 +48,12 @@ const projects = [
   },
 ];
 
-const certifications = ['C for Beginners', 'Data Structures in C', 'Arduino Programming for Absolute Beginners'];
+const certifications = [
+  { name: 'C for Beginners', image: null },
+  { name: 'Data Structures in C', image: null },
+  { name: 'Arduino Programming for Absolute Beginners', image: null },
+  { name: 'Additional Certification', image: '/hems.jpeg' }
+];
 const achievements = ['3rd Prize in Project Expo', "Udhayam'25 Paper Presentation Participant", "Kriya'26 Participant"];
 
 function FloatingParticles() {
@@ -91,7 +96,7 @@ function FloatingParticles() {
             opacity: [0.3, 0.6, 0.3]
           }}
           transition={{
-            duration: 10 + Math.random() * 10,
+            duration: 4 + Math.random() * 3,
             repeat: Infinity,
             ease: 'easeInOut',
             delay: id * 0.1
@@ -117,7 +122,7 @@ function FloatingParticles() {
             opacity: [0.1, 0.3, 0.1]
           }}
           transition={{
-            duration: 15 + Math.random() * 10,
+            duration: 6 + Math.random() * 4,
             repeat: Infinity,
             ease: 'easeInOut',
             delay: id * 0.2
@@ -166,8 +171,8 @@ function MeshNetwork() {
   
   useFrame(({ clock }) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y = clock.elapsedTime * 0.05;
-      groupRef.current.rotation.x = Math.sin(clock.elapsedTime * 0.1) * 0.1;
+      groupRef.current.rotation.y = clock.elapsedTime * 0.15;
+      groupRef.current.rotation.x = Math.sin(clock.elapsedTime * 0.2) * 0.1;
     }
   });
 
@@ -222,13 +227,13 @@ function MeshBackground() {
   const ref2 = useRef<any>();
   useFrame(({ clock }) => {
     if (ref.current) {
-      ref.current.rotation.y += 0.001;
-      ref.current.rotation.x = Math.sin(clock.elapsedTime / 6) * 0.15;
-      ref.current.rotation.z = Math.cos(clock.elapsedTime / 8) * 0.1;
+      ref.current.rotation.y += 0.003;
+      ref.current.rotation.x = Math.sin(clock.elapsedTime / 3) * 0.15;
+      ref.current.rotation.z = Math.cos(clock.elapsedTime / 4) * 0.1;
     }
     if (ref2.current) {
-      ref2.current.rotation.y -= 0.0008;
-      ref2.current.rotation.x = Math.cos(clock.elapsedTime / 7) * 0.12;
+      ref2.current.rotation.y -= 0.0025;
+      ref2.current.rotation.x = Math.cos(clock.elapsedTime / 3.5) * 0.12;
     }
   });
   return (
@@ -257,7 +262,7 @@ function App() {
   const [colorShift, setColorShift] = useState(0);
 
   useEffect(() => {
-    const interval = window.setInterval(() => setActiveRole((value) => (value + 1) % profileRoles.length), 3600);
+    const interval = window.setInterval(() => setActiveRole((value) => (value + 1) % profileRoles.length), 2000);
     return () => window.clearInterval(interval);
   }, []);
 
@@ -300,7 +305,7 @@ function App() {
 
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
         <div 
-          className="absolute inset-0 transition-all duration-[3000ms] ease-in-out"
+          className="absolute inset-0 transition-all duration-[1000ms] ease-in-out"
           style={{
             background: `
               radial-gradient(circle at ${50 + Math.sin(gradientPosition * 0.02) * 30}% ${50 + Math.cos(gradientPosition * 0.02) * 30}%, rgba(${94 + Math.sin(colorShift * 0.05) * 20}, ${189 + Math.cos(colorShift * 0.05) * 20}, 255, 0.18), transparent 28%),
@@ -310,7 +315,7 @@ function App() {
           }}
         />
         <div 
-          className="absolute inset-0 transition-all duration-500 ease-out"
+          className="absolute inset-0 transition-all duration-200 ease-out"
           style={{
             background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(${94 + Math.sin(colorShift * 0.1) * 30}, ${189 + Math.cos(colorShift * 0.1) * 30}, 255, 0.08) 0%, transparent 50%)`
           }}
@@ -326,7 +331,7 @@ function App() {
             ]
           }}
           transition={{
-            duration: 10,
+            duration: 4,
             repeat: Infinity,
             ease: 'linear'
           }}
@@ -501,7 +506,7 @@ function App() {
           </div>
 
           <div className="absolute inset-x-0 bottom-10 flex justify-center">
-            <motion.div animate={{ y: [0, 18, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }} className="flex items-center gap-3 rounded-full border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-slate-300 shadow-soft backdrop-blur-xl">
+            <motion.div animate={{ y: [0, 18, 0] }} transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }} className="flex items-center gap-3 rounded-full border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-slate-300 shadow-soft backdrop-blur-xl">
               <FiChevronDown className="text-cyanGlow" /> Scroll to explore
             </motion.div>
           </div>
@@ -519,7 +524,7 @@ function App() {
               ]
             }}
             transition={{
-              duration: 8,
+              duration: 4,
               repeat: Infinity,
               ease: 'linear'
             }}
@@ -586,7 +591,7 @@ function App() {
               ]
             }}
             transition={{
-              duration: 10,
+              duration: 5,
               repeat: Infinity,
               ease: 'linear'
             }}
@@ -695,7 +700,7 @@ function App() {
               ]
             }}
             transition={{
-              duration: 12,
+              duration: 6,
               repeat: Infinity,
               ease: 'linear'
             }}
@@ -781,11 +786,20 @@ function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ type: 'spring', stiffness: 160, delay: index * 0.15 }}
-                  key={cert}
+                  key={cert.name}
                   className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-8 shadow-soft backdrop-blur-xl transition-all duration-300 hover:border-cyanGlow/30 hover:shadow-glow"
                 >
                   <p className="text-sm uppercase tracking-[0.24em] text-cyanGlow font-medium">Certification</p>
-                  <h3 className="mt-5 text-xl font-bold text-white">{cert}</h3>
+                  {cert.image && (
+                    <div className="mt-4 overflow-hidden rounded-2xl border border-white/10">
+                      <img 
+                        src={cert.image} 
+                        alt={cert.name}
+                        className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+                      />
+                    </div>
+                  )}
+                  <h3 className={`mt-5 text-xl font-bold text-white ${cert.image ? 'mt-4' : ''}`}>{cert.name}</h3>
                   <p className="mt-4 text-slate-300 leading-relaxed">Verified training focused on strong fundamentals and applied embedded programming.</p>
                 </motion.div>
               ))}
@@ -878,7 +892,7 @@ function App() {
               ]
             }}
             transition={{
-              duration: 9,
+              duration: 4.5,
               repeat: Infinity,
               ease: 'linear'
             }}
@@ -907,7 +921,9 @@ function App() {
                 </div>
                 <div className="mt-10 flex gap-4">
                   <motion.a
-                    href="#"
+                    href="https://www.linkedin.com/in/hema-varshini-737791333?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-medium text-slate-100 transition-all duration-300 hover:border-cyanGlow hover:bg-cyanGlow/10 hover:text-white"
